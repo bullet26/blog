@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Typography, Stack, Button } from '@mui/material';
-import { CardList, CreateCommentForm } from '@/components';
+import { CommentSection, CreateCommentForm, PostSection } from '@/components';
 import { useGetAuthUser, useGetPostsByAuthor, useGetCommentsAll, useGetAuthorById } from '@/utils';
 
 type IMyPosts = {
@@ -16,7 +16,6 @@ const MyPosts = ({ params: { id } }: IMyPosts) => {
     const { data: posts, isError: isErrorPost } = useGetPostsByAuthor(id);
     const { data: comments, isError: isErrorComment } = useGetCommentsAll(id);
     const { data: author } = useGetAuthorById(id);
-    //console.log(id, author);
 
     const [postID, setPostId] = useState('');
 
@@ -42,18 +41,8 @@ const MyPosts = ({ params: { id } }: IMyPosts) => {
                 <Typography component='h1'>Author Feed - {author?.username}</Typography>
                 <Stack alignItems='center' justifyContent='space-between' direction='row' spacing={5}>
                     <Stack alignItems='center' justifyContent='center' spacing={5}>
-                        {!!posts && (
-                            <>
-                                <Typography>Select post, which you want to comment</Typography>
-                                <CardList posts={posts} showBtn={false} activePost={postID} onClick={setActivePost} />
-                            </>
-                        )}
-                        {!!comments && (
-                            <>
-                                <Typography>Comments to the author posts</Typography>
-                                <CardList posts={comments} showBtn={false} />
-                            </>
-                        )}
+                        {!!posts && <PostSection posts={posts} postID={postID} setActivePost={setActivePost} />}
+                        {!!comments && <CommentSection comments={comments} />}
                         {isErrorPost && <span>Couldn`t get posts</span>}
                         {isErrorComment && <span>Couldn`t get comments</span>}
                     </Stack>
