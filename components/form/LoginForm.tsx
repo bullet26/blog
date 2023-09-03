@@ -35,7 +35,6 @@ const LoginForm = () => {
 
     const onSubmit: SubmitHandler<IFormInput> = data => {
         mutate(data);
-        console.log(data);
         reset();
     };
 
