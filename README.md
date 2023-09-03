@@ -1,6 +1,6 @@
-![Schema]("..\assets\1.png")
+![Schema]("assets\1.png")
 
-![RLS]("..\assets\2.png")
+![RLS]("assets\2.png")
 
 #### Tech Stack:
 
