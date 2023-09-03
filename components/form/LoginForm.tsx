@@ -56,7 +56,7 @@ const LoginForm = () => {
                     Login
                 </Button>
             </form>
-            {isError && <div className={s.errorMessage}>{error?.message || 'Something went wrong'}</div>}
+            {isError && <div className={s.errorMessage}> {(error as { message?: string })?.message || 'Something went wrong'}</div>}
         </>
     );
 };

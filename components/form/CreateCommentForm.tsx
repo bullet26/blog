@@ -63,7 +63,7 @@ const CreateCommentForm: FC<ICommentPostForm> = props => {
                     Send Comment
                 </Button>
             </form>
-            {isError && <div className={s.errorMessage}>{error?.message || 'Something went wrong'}</div>}
+            {isError && <div className={s.errorMessage}> {(error as { message?: string })?.message || 'Something went wrong'}</div>}
             {!postID && showError && <div className={s.errorMessage}>{'Select the post'}</div>}
         </Stack>
     );
